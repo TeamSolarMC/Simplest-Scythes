@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "simplest_scythes:scythe_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "simplest_scythes:iron_scythe"
+  },
+  "addition": {
+    "item": "minecraft:gold_block"
+  },
+  "result": {
+    "id": "simplest_scythes:golden_scythe",
+    "count": 1
+  }
+}

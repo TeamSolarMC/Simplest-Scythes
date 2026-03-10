@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "simplest_scythes:item/netherite_scythe"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "simplest_scythes:scythe_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "minecraft:wooden_hoe"
+  },
+  "addition": {
+    "tag": "minecraft:logs"
+  },
+  "result": {
+    "id": "simplest_scythes:wooden_scythe",
+    "count": 1
+  }
+}

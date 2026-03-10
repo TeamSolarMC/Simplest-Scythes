@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "simplest_scythes:scythe_upgrade_smithing_template"
+  },
+  "base": {
+    "tag": "simplest_scythes:diamond_scythe_base"
+  },
+  "addition": {
+    "item": "minecraft:diamond_block"
+  },
+  "result": {
+    "id": "simplest_scythes:diamond_scythe",
+    "count": 1
+  }
+}
