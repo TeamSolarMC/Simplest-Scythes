@@ -3,6 +3,7 @@ package com.simplestscythes.simplest_scythes.item;
 import com.simplestscythes.simplest_scythes.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -94,7 +96,26 @@ public class ScytheItem extends HoeItem {
     }
 
     @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        var key = enchantment.getKey();
+        if (key != null) {
+            String path = key.identifier().getPath();
+            if (path.equals("sharpness") ||
+                    path.equals("smite") ||
+                    path.equals("bane_of_arthropods") ||
+                    path.equals("knockback") ||
+                    path.equals("fire_aspect") ||
+                    path.equals("looting")) {
+                return false;
+            }
+        }
+        return super.supportsEnchantment(stack, enchantment);
+    }
+
+
+    @Override
     public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
-        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility);
+        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility)
+                || itemAbility == ItemAbilities.SWORD_SWEEP;
     }
 }

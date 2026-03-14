@@ -1,1 +1,1 @@
-{"type":"minecraft:smithing_transform","template":{"item":"simplest_scythes:scythe_upgrade_smithing_template"},"base":{"item":"minecraft:golden_hoe"},"addition":{"item":"minecraft:gold_block"},"result":{"id":"simplest_scythes:golden_scythe","count":1}}
+{"type":"minecraft:smithing_transform","template":"simplest_scythes:scythe_upgrade_smithing_template","base":"minecraft:golden_hoe","addition":"minecraft:gold_block","result":"simplest_scythes:golden_scythe"}
