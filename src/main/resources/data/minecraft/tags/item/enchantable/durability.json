@@ -1,11 +1,1 @@
-{
-  "replace": false,
-  "values": [
-    "simplest_scythes:wooden_scythe",
-    "simplest_scythes:stone_scythe",
-    "simplest_scythes:iron_scythe",
-    "simplest_scythes:golden_scythe",
-    "simplest_scythes:diamond_scythe",
-    "simplest_scythes:netherite_scythe"
-  ]
-}
+{"replace":false,"values":["simplest_scythes:wooden_scythe","simplest_scythes:stone_scythe","simplest_scythes:iron_scythe","simplest_scythes:golden_scythe","simplest_scythes:diamond_scythe","simplest_scythes:netherite_scythe"]}

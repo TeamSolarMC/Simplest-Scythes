@@ -8,10 +8,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -25,8 +26,6 @@ import java.util.Map;
 
 public class ScytheItem extends HoeItem {
 
-    private final Tier tier;
-
     private static final Map<Block, BlockState> TILLABLES = new HashMap<>();
 
     static {
@@ -37,19 +36,8 @@ public class ScytheItem extends HoeItem {
         TILLABLES.put(Blocks.ROOTED_DIRT, Blocks.DIRT.defaultBlockState());
     }
 
-    public ScytheItem(Tier tier, Properties properties) {
-        super(tier, properties);
-        this.tier = tier;
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return this.getTier().getEnchantmentValue();
-    }
-
-    @Override
-    public boolean isEnchantable(ItemStack stack) {
-        return true;
+    public ScytheItem(ToolMaterial material, float attackDamage, float attackSpeed, Properties properties) {
+        super(material, attackDamage, attackSpeed, properties);
     }
 
     @Override
@@ -97,11 +85,9 @@ public class ScytheItem extends HoeItem {
         if (tilledCount > 0) {
             level.playSound(player, clickedPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
             ItemStack stack = context.getItemInHand();
-            stack.hurtAndBreak(tilledCount, player,
-                    context.getHand() == InteractionHand.MAIN_HAND
-                            ? EquipmentSlot.MAINHAND
-                            : EquipmentSlot.OFFHAND);
-            return InteractionResult.sidedSuccess(level.isClientSide());
+            stack.hurtAndBreak(tilledCount, player, context.getHand() == InteractionHand.MAIN_HAND
+                    ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+            return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
         }
 
         return InteractionResult.PASS;

@@ -14,8 +14,8 @@ public class ModConfig {
 
         TILL_RADIUS = BUILDER
                 .comment("Tilling radius around clicked block.",
-                        "1 = 3x3, 2 = 5x5, 3 = 7x7, etc.")
-                .defineInRange("tillRadius", 1, 1,5);
+                         "1 = 3x3, 2 = 5x5, 3 = 7x7, etc.")
+                .defineInRange("tillRadius", 1, 1, 5);
 
         BUILDER.pop();
         SPEC = BUILDER.build();

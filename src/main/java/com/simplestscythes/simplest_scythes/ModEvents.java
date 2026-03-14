@@ -2,6 +2,9 @@ package com.simplestscythes.simplest_scythes;
 
 import com.simplestscythes.simplest_scythes.item.ModItems;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
@@ -14,12 +17,12 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void addWanderingTraderTrades(WandererTradesEvent event) {
-        event.getRareTrades().add(new BasicItemListing(
-                12,  // цена в изумрудах
+        event.getGenericTrades().add(new BasicItemListing(
+                12,
                 new ItemStack(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get(), 1),
-                3,   // maxUses
-                12,  // xpReward
-                0.05F // priceMultiplier
+                3,
+                12,
+                0.05F
         ));
     }
 
@@ -33,7 +36,7 @@ public class ModEvents {
 
             LootPool pool = LootPool.lootPool()
                     .add(LootItem.lootTableItem(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get()))
-                    .when(LootItemRandomChanceCondition.randomChance(0.25f))
+                    .when(LootItemRandomChanceCondition.randomChance(0.25F))
                     .build();
             event.getTable().addPool(pool);
         }

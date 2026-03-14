@@ -13,8 +13,10 @@ public class SimplestScythes {
 
     public SimplestScythes(IEventBus modEventBus) {
         ModItems.ITEMS.register(modEventBus);
+
         ModLoadingContext.get().getActiveContainer()
                 .registerConfig(ModConfig.Type.COMMON, com.simplestscythes.simplest_scythes.ModConfig.SPEC);
+
         NeoForge.EVENT_BUS.register(ModEvents.class);
     }
 }

@@ -1,14 +1,15 @@
 {
-  "item.simplest_scythes.wooden_scythe": "Деревянная коса",
-  "item.simplest_scythes.stone_scythe": "Каменная коса",
-  "item.simplest_scythes.iron_scythe": "Железная коса",
-  "item.simplest_scythes.golden_scythe": "Золотая коса",
-  "item.simplest_scythes.diamond_scythe": "Алмазная коса",
-  "item.simplest_scythes.netherite_scythe": "Незеритовая коса",
-  "item.simplest_scythes.scythe_upgrade_smithing_template": "Кузнечный шаблон",
+  "item.simplest_scythes.wooden_scythe": "Деревянная Коса",
+  "item.simplest_scythes.stone_scythe": "Каменная Коса",
+  "item.simplest_scythes.copper_scythe": "Медная Коса",
+  "item.simplest_scythes.iron_scythe": "Железная Коса",
+  "item.simplest_scythes.golden_scythe": "Золотая Коса",
+  "item.simplest_scythes.diamond_scythe": "Алмазная Коса",
+  "item.simplest_scythes.netherite_scythe": "Незеритовая Коса",
+  "item.simplest_scythes.scythe_upgrade_smithing_template": "Улучшение до косы",
   "item.simplest_scythes.smithing_template.scythe_upgrade.applies_to": "Косам и мотыгам",
   "item.simplest_scythes.smithing_template.scythe_upgrade.ingredients": "Блоки материала",
+  "item.simplest_scythes.smithing_template.scythe_upgrade.title": "Кузнечный шаблон",
   "item.simplest_scythes.smithing_template.scythe_upgrade.base_slot_description": "Поместите косу или мотыгу",
-  "item.simplest_scythes.smithing_template.scythe_upgrade.additions_slot_description": "Поместите блок нужного материала",
-  "item.simplest_scythes.smithing_template.scythe_upgrade.upgradeDesc": "Улучшение до косы"
+  "item.simplest_scythes.smithing_template.scythe_upgrade.additions_slot_description": "Поместите блок нужного материала"
 }
