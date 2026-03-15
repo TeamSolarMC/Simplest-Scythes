@@ -109,6 +109,7 @@ public class ScytheItem extends HoeItem {
 
     @Override
     public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
-        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility);
+        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility)
+                || itemAbility == ItemAbilities.SWORD_SWEEP;
     }
 }

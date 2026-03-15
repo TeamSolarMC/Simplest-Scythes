@@ -22,27 +22,27 @@ public class ModItems {
 
     public static final DeferredItem<ScytheItem> WOODEN_SCYTHE = ITEMS.register("wooden_scythe",
             () -> new ScytheItem(ModTiers.WOODEN_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.WOODEN_SCYTHE, 1, -3.5F))));
+                    .attributes(ScytheItem.createAttributes(ModTiers.WOODEN_SCYTHE, 3, -3.0F))));
 
     public static final DeferredItem<ScytheItem> STONE_SCYTHE = ITEMS.register("stone_scythe",
             () -> new ScytheItem(ModTiers.STONE_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.STONE_SCYTHE, 0, -2.5F))));
+                    .attributes(ScytheItem.createAttributes(ModTiers.STONE_SCYTHE, 3, -3.0F))));
 
     public static final DeferredItem<ScytheItem> IRON_SCYTHE = ITEMS.register("iron_scythe",
             () -> new ScytheItem(ModTiers.IRON_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.IRON_SCYTHE, -1, -1.5F))));
+                    .attributes(ScytheItem.createAttributes(ModTiers.IRON_SCYTHE, 3, -3.0F))));
 
     public static final DeferredItem<ScytheItem> GOLDEN_SCYTHE = ITEMS.register("golden_scythe",
             () -> new ScytheItem(ModTiers.GOLDEN_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.GOLDEN_SCYTHE, 1, -3.5F))));
+                    .attributes(ScytheItem.createAttributes(ModTiers.GOLDEN_SCYTHE, 3, -3.0F))));
 
     public static final DeferredItem<ScytheItem> DIAMOND_SCYTHE = ITEMS.register("diamond_scythe",
             () -> new ScytheItem(ModTiers.DIAMOND_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.DIAMOND_SCYTHE, -2, -0.5F))));
+                    .attributes(ScytheItem.createAttributes(ModTiers.DIAMOND_SCYTHE, 3, -3.0F))));
 
     public static final DeferredItem<ScytheItem> NETHERITE_SCYTHE = ITEMS.register("netherite_scythe",
             () -> new ScytheItem(ModTiers.NETHERITE_SCYTHE, new Item.Properties()
-                    .attributes(ScytheItem.createAttributes(ModTiers.NETHERITE_SCYTHE, -3, -0.5F))
+                    .attributes(ScytheItem.createAttributes(ModTiers.NETHERITE_SCYTHE, 3, -3.0F))
                     .fireResistant()));
 
     public static final DeferredItem<SmithingTemplateItem> SCYTHE_UPGRADE_SMITHING_TEMPLATE =

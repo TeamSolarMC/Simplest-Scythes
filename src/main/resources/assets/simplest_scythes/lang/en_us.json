@@ -8,7 +8,7 @@
   "item.simplest_scythes.scythe_upgrade_smithing_template": "Smithing Template",
   "item.simplest_scythes.smithing_template.scythe_upgrade.applies_to": "Scythes & Hoes",
   "item.simplest_scythes.smithing_template.scythe_upgrade.ingredients": "Material Blocks",
-  "item.simplest_scythes.smithing_template.scythe_upgrade.base_slot_description": "Add a hammer or a pickaxe",
+  "item.simplest_scythes.smithing_template.scythe_upgrade.base_slot_description": "Add a scythe or a pickaxe",
   "item.simplest_scythes.smithing_template.scythe_upgrade.additions_slot_description": "Add an appropriate material block",
   "item.simplest_scythes.smithing_template.scythe_upgrade.upgradeDesc": "Scythe Upgrade"
 }
