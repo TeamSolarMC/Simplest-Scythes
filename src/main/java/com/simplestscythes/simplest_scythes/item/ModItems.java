@@ -81,6 +81,14 @@ public class ModItems {
             event.accept(GOLDEN_SCYTHE);
             event.accept(DIAMOND_SCYTHE);
             event.accept(NETHERITE_SCYTHE);
+        }
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(WOODEN_SCYTHE);
+            event.accept(STONE_SCYTHE);
+            event.accept(IRON_SCYTHE);
+            event.accept(GOLDEN_SCYTHE);
+            event.accept(DIAMOND_SCYTHE);
+            event.accept(NETHERITE_SCYTHE);
         } else if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(SCYTHE_UPGRADE_SMITHING_TEMPLATE);
         }
