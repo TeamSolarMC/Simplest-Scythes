@@ -1,1 +1,1 @@
-{"type":"minecraft:smithing_transform","template":"simplest_scythes:scythe_upgrade_smithing_template","base":"minecraft:copper_hoe","addition":"minecraft:copper_block","result":"simplest_scythes:copper_scythe"}
+{"type":"minecraft:smithing_transform","template":"simplest_scythes:scythe_upgrade_smithing_template","base":"simplest_scythes:stone_scythe","addition":"minecraft:copper_block","result":"simplest_scythes:copper_scythe"}
