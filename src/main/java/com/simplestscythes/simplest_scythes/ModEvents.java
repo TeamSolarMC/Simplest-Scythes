@@ -28,11 +28,11 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onLootTableLoad(LootTableLoadEvent event) {
-        String path = event.getName().getPath();
+        String path = event.getName().toString();
 
-        if (path.equals("chests/village/village_toolsmith") ||
-            path.equals("chests/village/village_armorer") ||
-            path.equals("chests/village/village_weaponsmith")) {
+        if (path.contains("village_toolsmith") ||
+            path.contains("village_armorer") ||
+            path.contains("village_weaponsmith")) {
 
             LootPool pool = LootPool.lootPool()
                     .add(LootItem.lootTableItem(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get()))
