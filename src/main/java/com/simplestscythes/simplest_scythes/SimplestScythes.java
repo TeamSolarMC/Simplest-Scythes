@@ -1,6 +1,7 @@
 package com.simplestscythes.simplest_scythes;
 
 import com.simplestscythes.simplest_scythes.item.ModItems;
+import com.simplestscythes.simplest_scythes.loot.ModLootModifiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
@@ -15,6 +16,7 @@ public class SimplestScythes {
         ModItems.ITEMS.register(modEventBus);
         ModLoadingContext.get().getActiveContainer()
                 .registerConfig(ModConfig.Type.COMMON, com.simplestscythes.simplest_scythes.ModConfig.SPEC);
+        ModLootModifiers.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
         NeoForge.EVENT_BUS.register(ModEvents.class);
     }
 }

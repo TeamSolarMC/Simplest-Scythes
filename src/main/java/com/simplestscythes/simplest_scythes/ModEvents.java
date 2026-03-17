@@ -17,25 +17,9 @@ public class ModEvents {
         event.getRareTrades().add(new BasicItemListing(
                 12,  // цена в изумрудах
                 new ItemStack(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get(), 1),
-                3,   // maxUses
-                12,  // xpReward
-                0.05F // priceMultiplier
+                1,   // maxUses
+                2,  // xpReward
+                0.2F // priceMultiplier
         ));
-    }
-
-    @SubscribeEvent
-    public static void onLootTableLoad(LootTableLoadEvent event) {
-        String path = event.getName().toString();
-
-        if (path.contains("village_toolsmith") ||
-            path.contains("village_armorer") ||
-            path.contains("village_weaponsmith")) {
-
-            LootPool pool = LootPool.lootPool()
-                    .add(LootItem.lootTableItem(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get()))
-                    .when(LootItemRandomChanceCondition.randomChance(0.25f))
-                    .build();
-            event.getTable().addPool(pool);
-        }
     }
 }
