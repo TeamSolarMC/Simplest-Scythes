@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "entries": [
+    "simplest_scythes:scythe_template_in_toolsmith",
+    "simplest_scythes:scythe_template_in_armorer",
+    "simplest_scythes:scythe_template_in_weaponsmith",
+    "simplest_scythes:scythe_template_in_plains_house",
+    "simplest_scythes:scythe_template_in_desert_house",
+    "simplest_scythes:scythe_template_in_savanna_house",
+    "simplest_scythes:scythe_template_in_snowy_house",
+    "simplest_scythes:scythe_template_in_taiga_house"
+  ]
+}

@@ -20,25 +20,9 @@ public class ModEvents {
         event.getGenericTrades().add(new BasicItemListing(
                 12,
                 new ItemStack(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get(), 1),
-                3,
-                12,
-                0.05F
+                1,
+                2,
+                0.2F
         ));
-    }
-
-    @SubscribeEvent
-    public static void onLootTableLoad(LootTableLoadEvent event) {
-        String path = event.getName().toString();
-
-        if (path.contains("village_toolsmith") ||
-            path.contains("village_armorer") ||
-            path.contains("village_weaponsmith")) {
-
-            LootPool pool = LootPool.lootPool()
-                    .add(LootItem.lootTableItem(ModItems.SCYTHE_UPGRADE_SMITHING_TEMPLATE.get()))
-                    .when(LootItemRandomChanceCondition.randomChance(0.25F))
-                    .build();
-            event.getTable().addPool(pool);
-        }
     }
 }

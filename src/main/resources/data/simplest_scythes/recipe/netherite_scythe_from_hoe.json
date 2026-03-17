@@ -1,1 +1,1 @@
-{"type":"minecraft:smithing_transform","template":"minecraft:netherite_upgrade_smithing_template","base":"minecraft:netherite_hoe","addition":"minecraft:netherite_ingot","result":"simplest_scythes:netherite_scythe"}
+{"type":"minecraft:smithing_transform","template":"simplest_scythes:scythe_upgrade_smithing_template","base":"minecraft:netherite_hoe","addition":"minecraft:diamond_block","result":"simplest_scythes:netherite_scythe"}
