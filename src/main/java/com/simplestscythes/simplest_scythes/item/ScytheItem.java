@@ -4,8 +4,10 @@ import com.simplestscythes.simplest_scythes.ModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,11 +21,13 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.ItemAbilities;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScytheItem extends HoeItem {
@@ -56,13 +60,50 @@ public class ScytheItem extends HoeItem {
             return super.useOn(context);
         }
 
+        int radius = ModConfig.TILL_RADIUS.get();
+
+        // === HARVEST CROPS ===
+        int harvestedCount = 0;
+        for (int dx = -radius; dx <= radius; dx++) {
+            for (int dz = -radius; dz <= radius; dz++) {
+                BlockPos targetPos = clickedPos.offset(dx, 0, dz);
+                BlockState targetState = level.getBlockState(targetPos);
+                Block block = targetState.getBlock();
+
+                if (block instanceof CropBlock crop && crop.isMaxAge(targetState)) {
+                    if (!level.isClientSide()) {
+                        List<ItemStack> drops = Block.getDrops(targetState, (ServerLevel) level, targetPos, null);
+                        ItemStack seedItem = new ItemStack(crop.asItem());
+                        boolean seedRemoved = false;
+                        for (ItemStack drop : drops) {
+                            if (!seedRemoved && drop.getItem() == seedItem.getItem()) {
+                                drop.shrink(1);
+                                seedRemoved = true;
+                            }
+                            if (!drop.isEmpty()) {
+                                Block.popResource(level, targetPos, drop);
+                            }
+                        }
+                        level.setBlock(targetPos, crop.getStateForAge(0), Block.UPDATE_ALL_IMMEDIATE);
+                    }
+                    harvestedCount++;
+                }
+            }
+        }
+
+        if (harvestedCount > 0) {
+            level.playSound(player, clickedPos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            context.getItemInHand().hurtAndBreak(harvestedCount, player,
+                    context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+            return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
+        }
+
+        // === TILL SOIL ===
         if (context.getClickedFace() != Direction.UP) {
             return InteractionResult.PASS;
         }
 
         int tilledCount = 0;
-        int radius = ModConfig.TILL_RADIUS.get();
-
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
                 BlockPos targetPos = clickedPos.offset(dx, 0, dz);
@@ -70,9 +111,7 @@ public class ScytheItem extends HoeItem {
                 BlockPos abovePos = targetPos.above();
                 BlockState aboveState = level.getBlockState(abovePos);
 
-                if (!aboveState.isAir()) {
-                    continue;
-                }
+                if (!aboveState.isAir()) continue;
 
                 BlockState tilledState = TILLABLES.get(targetState.getBlock());
                 if (tilledState != null) {
@@ -86,13 +125,56 @@ public class ScytheItem extends HoeItem {
 
         if (tilledCount > 0) {
             level.playSound(player, clickedPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-            ItemStack stack = context.getItemInHand();
-            stack.hurtAndBreak(tilledCount, player, context.getHand() == InteractionHand.MAIN_HAND
-                    ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+            context.getItemInHand().hurtAndBreak(tilledCount, player,
+                    context.getHand() == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
             return level.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
         }
 
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility)
+                || itemAbility == ItemAbilities.SWORD_SWEEP;
+    }
+
+    @Override
+    public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miner) {
+        if (!level.isClientSide() && ModConfig.AREA_MINING.get()) {
+            if (state.is(BlockTags.MINEABLE_WITH_HOE) && miner instanceof Player player) {
+                int radius = ModConfig.TILL_RADIUS.get();
+
+                Direction facing = Direction.getApproximateNearest(
+                        player.getLookAngle().x,
+                        player.getLookAngle().y,
+                        player.getLookAngle().z
+                );
+
+                for (int d1 = -radius; d1 <= radius; d1++) {
+                    for (int d2 = -radius; d2 <= radius; d2++) {
+                        if (d1 == 0 && d2 == 0) continue;
+
+                        BlockPos targetPos;
+                        if (facing == Direction.UP || facing == Direction.DOWN) {
+                            targetPos = pos.offset(d1, 0, d2);
+                        } else if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+                            targetPos = pos.offset(d1, d2, 0);
+                        } else {
+                            targetPos = pos.offset(0, d2, d1);
+                        }
+
+                        BlockState targetState = level.getBlockState(targetPos);
+
+                        if (targetState.is(BlockTags.MINEABLE_WITH_HOE)) {
+                            level.destroyBlock(targetPos, true, player);
+                            stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+                        }
+                    }
+                }
+            }
+        }
+        return super.mineBlock(stack, level, state, pos, miner);
     }
 
     @Override
@@ -110,12 +192,5 @@ public class ScytheItem extends HoeItem {
             }
         }
         return super.supportsEnchantment(stack, enchantment);
-    }
-
-
-    @Override
-    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
-        return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility)
-                || itemAbility == ItemAbilities.SWORD_SWEEP;
     }
 }
