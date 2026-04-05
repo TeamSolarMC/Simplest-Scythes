@@ -19,7 +19,5 @@ public class SimplestScythes {
                 .registerConfig(ModConfig.Type.COMMON, com.simplestscythes.simplest_scythes.ModConfig.SPEC);
 
         ModLootModifiers.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
-
-        NeoForge.EVENT_BUS.register(ModEvents.class);
     }
 }

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.context.UseOnContext;
@@ -134,7 +135,7 @@ public class ScytheItem extends HoeItem {
     }
 
     @Override
-    public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
+    public boolean canPerformAction(ItemInstance stack, ItemAbility itemAbility) {
         return ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility)
                 || itemAbility == ItemAbilities.SWORD_SWEEP;
     }

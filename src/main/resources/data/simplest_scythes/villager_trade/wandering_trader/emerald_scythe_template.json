@@ -1,0 +1,12 @@
+{
+  "wants": {
+    "id": "minecraft:emerald",
+    "count": 12
+  },
+  "gives": {
+    "id": "simplest_scythes:scythe_upgrade_smithing_template"
+  },
+  "max_uses": 3,
+  "xp": 2,
+  "reputation_discount": 0.05
+}
